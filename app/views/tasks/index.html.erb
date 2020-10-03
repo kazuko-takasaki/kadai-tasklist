@@ -1,24 +1,27 @@
 <h1>一覧</h1>
 
 <% if @tasks.any? %>
- <table class="table table-striped">
-     <thead>
-         <tr>
-            <th>id</th>
-            <th>タイトル</th>
-            <th>メッセージ</th>
-         </tr>
-     </thead>
-     <tbody>
-         <% @tasks.each do |tasks| %>
+     <table class="table table-striped">
+         <thead>
              <tr>
-                 <td><%= link_to task.id,task %></td>
-                 <td><%= task.title %></td>
-                 <td><%= task.content %></td>
+                <th>id</th>
+                <th>タスク</th>
+                <th>ステータス</th>
              </tr>
-        <% end %>
-     </tbody>
- </table>
- <%= paginate @tasks %>
+         </thead>
+         <tbody>
+             <% @tasks.each do |task| %>
+             <tr>
+                 <td><%= link_to task.id, task %></td>
+                 <td><%= task.content %></td>
+                 <td><%= task.status %></td>
+             </tr>
+            <% end %>
+         </tbody>
+     </table>
+     <div>
+     <%= paginate @tasks %>
+    </div>
+<% end %>
 
 <%= link_to '新規タスクの登録', new_task_path, class: "btn btn-primary" %>
