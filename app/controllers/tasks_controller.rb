@@ -8,6 +8,10 @@ class TasksController < ApplicationController
   end
   
   def show
+    if @task.user != current_user
+      flash[:warning] = '不正なアクセスです'
+      redirect_to tasks_path
+    end
   end
 
   def new
@@ -26,10 +30,6 @@ class TasksController < ApplicationController
   end
 
   def edit
-    if @task.user != current_user
-      flash[:warning] = '不正なアクセスです'
-      redirect_to tasks_path
-    end
   end
 
   def update
