@@ -28,7 +28,7 @@ class TasksController < ApplicationController
   def edit
     if @task.user != current_user
       flash[:warning] = '不正なアクセスです'
-      redirect_back(fallback_location: root_path)
+      redirect_to tasks_path
     end
   end
 
