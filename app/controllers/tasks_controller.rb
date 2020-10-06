@@ -10,7 +10,7 @@ class TasksController < ApplicationController
   def show
     if @task.user != current_user
       flash[:warning] = '不正なアクセスです'
-      redirect_to tasks_path
+      redirect_to root_url
     end
   end
 
