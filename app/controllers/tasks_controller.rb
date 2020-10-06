@@ -1,14 +1,10 @@
 class TasksController < ApplicationController
   before_action :require_user_logged_in
-  before_action :correct_user, only: [:destroy]
-  before_action :set_task, only: [:index,:show, :edit, :update, :destroy]
+  before_action :correct_user, only: [:destroy, :index]
+  before_action :set_task, only: [:show, :edit, :update, :destroy]
   
   def index
     @tasks = current_user.tasks.page(params[:page]).per(3)
-      if @task.user != current_user
-      flash[:warning] = '不正なアクセスです'
-      redirect_to root_url
-      end
   end
   
   def show
